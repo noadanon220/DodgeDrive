@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/main_IMG_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/background2" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="@dimen/default_margin">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_heart0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/heart" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_heart1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/heart" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_heart2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/heart" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/main_FAB_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/default_margin"
+        android:backgroundTint="@color/orange_400"
+        android:clickable="true"
+        android:textStyle="bold"
+        app:icon="@drawable/baseline_arrow_circle_right_24"
+        app:iconTint="@android:color/black"
+        app:strokeColor="@color/black"
+        app:strokeWidth="@dimen/default_stroke" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/main_FAB_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/default_margin"
+        android:backgroundTint="@color/orange_400"
+        android:clickable="true"
+        android:textStyle="bold"
+        app:icon="@drawable/baseline_arrow_circle_left_24"
+        app:iconTint="@android:color/black"
+        app:strokeColor="@color/black"
+        app:strokeWidth="@dimen/default_stroke" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/main_LAYOUT_board"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingHorizontal="60dp"
+        android:paddingVertical="16dp">
+
+        <!-- Row 0 -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_0_0"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/rock"
+                android:layout_marginHorizontal="16dp"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_0_1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/rock"
+                android:layout_marginHorizontal="16dp"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_0_2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/rock"
+                android:layout_marginHorizontal="16dp"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <!-- Row 1 -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_1_0"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/rock"
+                android:layout_marginHorizontal="16dp"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_1_1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/rock"
+                android:layout_marginHorizontal="16dp"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_1_2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/rock"
+                android:layout_marginHorizontal="16dp"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <!-- Row 2 -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_2_0"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/rock"
+                android:layout_marginHorizontal="16dp"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_2_1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/rock"
+                android:layout_marginHorizontal="16dp"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_2_2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/rock"
+                android:layout_marginHorizontal="16dp"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <!-- Row 3 -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_3_0"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/rock"
+                android:layout_marginHorizontal="16dp"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_3_1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/rock"
+                android:layout_marginHorizontal="16dp"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_3_2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/rock"
+                android:layout_marginHorizontal="16dp"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <!-- Row 4 -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_4_0"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/rock"
+                android:layout_marginHorizontal="16dp"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_4_1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/rock"
+                android:layout_marginHorizontal="16dp"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_4_2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/rock"
+                android:layout_marginHorizontal="16dp"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <!-- Row 5 -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_5_0"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/rock"
+                android:layout_marginHorizontal="16dp"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_5_1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/rock"
+                android:layout_marginHorizontal="16dp"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_5_2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/rock"
+                android:layout_marginHorizontal="16dp"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <!-- Row 6 -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_6_0"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/rock"
+                android:layout_marginHorizontal="16dp"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_6_1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/rock"
+                android:layout_marginHorizontal="16dp"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_6_2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/rock"
+                android:layout_marginHorizontal="16dp"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <!-- Row 7 -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_7_0"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/rock"
+                android:layout_marginHorizontal="16dp"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_7_1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/rock"
+                android:layout_marginHorizontal="16dp"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_7_2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/rock"
+                android:layout_marginHorizontal="16dp"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <!-- Row 8 -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_8_0"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/rock"
+                android:layout_marginHorizontal="16dp"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_8_1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/rock"
+                android:layout_marginHorizontal="16dp"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_8_2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/rock"
+                android:layout_marginHorizontal="16dp"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <!-- Car Row -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/main_LAYOUT_car_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:orientation="horizontal"
+android:paddingHorizontal="60dp"
+        android:paddingBottom="16dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_car_0"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+
+            android:src="@drawable/car" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_car_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/car" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_car_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/car" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+</RelativeLayout>
