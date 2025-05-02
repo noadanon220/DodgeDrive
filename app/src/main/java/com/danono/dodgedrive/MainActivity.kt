@@ -8,6 +8,7 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
+import com.danono.dodgedrive.R
 import com.danono.dodgedrive.logic.GameManager
 import com.danono.dodgedrive.logic.GameTimer
 import com.danono.dodgedrive.utilities.Constants
@@ -199,11 +200,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun initGame() {
         // Hide all rocks initially
-        for (row in 0 until 9) {
-            for (col in 0 until 3) {
+        for (row in 0 until Constants.Game.BOARD_ROWS) {
+            for (col in 0 until Constants.Game.BOARD_COLS) {
                 main_LAYOUT_board[row][col].visibility = View.INVISIBLE
             }
         }
+
 
         // Show only one car (middle position by default)
         for (i in main_LAYOUT_car_row.indices) {

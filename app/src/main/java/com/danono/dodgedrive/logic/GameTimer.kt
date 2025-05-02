@@ -11,10 +11,7 @@ class GameTimer(private val scope: CoroutineScope, private val onTick: () -> Uni
     private lateinit var timerJob: Job
     private var timerOn: Boolean = false
 
-    /**
-     * Starts the game timer with the specified delay between ticks
-     * @param delayMillis Milliseconds between each timer tick
-     */
+
     fun start(delayMillis: Long) {
         if (!timerOn) {
             timerOn = true

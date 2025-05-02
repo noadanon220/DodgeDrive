@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.danono.carrace"
+    namespace = "com.danono.dodgedrive"
     compileSdk = 35
 
     defaultConfig {

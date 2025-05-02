@@ -1,57 +1,34 @@
 package com.danono.dodgedrive.logic
 
 import com.danono.dodgedrive.model.Position
-
+import com.danono.dodgedrive.utilities.Constants
 
 class GameManager {
-    // Car position : 0, 1, or 2 for the lanes
-    var carPosition = 1
+    var carPosition = Constants.Game.CAR_START_POSITION
         private set
 
-    // Lives remaining
-    private var lives = 3
-
-    // List to store active rock positions on the board
+    private var lives = Constants.Game.INITIAL_LIVES
     private val rockPositions = mutableListOf<Position>()
-
-    // Max number of rocks that can be active at once
-    private val MAX_ROCKS = 3
-
-    // Counter to track when to add the next rock
+    private val MAX_ROCKS = Constants.Game.MAX_ROCK_STREAMS
     private var rockAddCounter = 0
 
-    // How many ticks to wait between adding rocks
-    private val ROCK_ADD_DELAY = 2
-
-    // Get a copy of current rock positions
     fun getRockPositions(): List<Position> = rockPositions.toList()
-
-    // Get remaining lives
     fun getLives(): Int = lives
-
-    // Check if game is over
     fun isGameOver(): Boolean = lives <= 0
 
-    // Add new rocks with controlled timing
     fun addNewRocks() {
-        // Only add a new rock if we have fewer than MAX_ROCKS
         if (rockPositions.size < MAX_ROCKS) {
             rockAddCounter++
-
-            // Only add a new rock after waiting ROCK_ADD_DELAY ticks
-            if (rockAddCounter >= ROCK_ADD_DELAY) {
-                // Reset counter
+            if (rockAddCounter >= Constants.Game.ROCK_ADD_DELAY) {
                 rockAddCounter = 0
-
-                // Choose a random lane that doesn't already have a rock in the top row
                 val occupiedColumns = rockPositions
                     .filter { it.row == 0 }
                     .map { it.col }
                     .toSet()
 
-                val availableColumns = (0..2).filter { it !in occupiedColumns }
+                val availableColumns = (0 until Constants.Game.BOARD_COLS)
+                    .filter { it !in occupiedColumns }
 
-                // Only add a rock if there's an available column
                 if (availableColumns.isNotEmpty()) {
                     val randomColumn = availableColumns.random()
                     rockPositions.add(Position(0, randomColumn))
@@ -60,34 +37,24 @@ class GameManager {
         }
     }
 
-    // Move all rocks down by one row and check for collisions
     fun moveRocksDown(): Boolean {
         val updatedPositions = mutableListOf<Position>()
         var collision = false
 
         for (position in rockPositions) {
             val newRow = position.row + 1
-
-            // Check if this rock hits the car
-            if (newRow == 8 && position.col == carPosition) {
+            if (newRow == Constants.Game.BOARD_ROWS - 1 && position.col == carPosition) {
                 collision = true
-                // Don't add this rock to updated positions (it "crashed" with car)
                 continue
             }
-
-            // Keep the rock if it's still on the board
-            if (newRow < 9) {
+            if (newRow < Constants.Game.BOARD_ROWS) {
                 updatedPositions.add(Position(newRow, position.col))
             }
-            // If rock reaches the bottom, it just disappears
-            // (we don't add it back to the top)
         }
 
-        // Update the rock positions
         rockPositions.clear()
         rockPositions.addAll(updatedPositions)
 
-        // If collision occurred, reduce lives
         if (collision) {
             lives--
         }
@@ -95,13 +62,11 @@ class GameManager {
         return collision
     }
 
-    // Move car left
     fun moveLeft() {
         if (carPosition > 0) carPosition--
     }
 
-    // Move car right
     fun moveRight() {
-        if (carPosition < 2) carPosition++
+        if (carPosition < Constants.Game.BOARD_COLS - 1) carPosition++
     }
 }
