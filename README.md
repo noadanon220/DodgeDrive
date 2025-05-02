@@ -24,7 +24,7 @@ The game challenges the player to avoid falling rocks by controlling a car acros
 ## 🖼️ Screenshots
 
 ### Game Start
-![Game Start](screenshots/Screenshot_1.jpg)
+![Game Start](screenshots/Screenshot_1.JPG)
 
 ### After Collision
 ![Collision](screenshots/Screenshot_2.jpg)
