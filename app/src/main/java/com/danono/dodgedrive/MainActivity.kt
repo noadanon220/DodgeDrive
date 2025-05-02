@@ -64,8 +64,6 @@ class MainActivity : AppCompatActivity() {
             }
 
 
-
-
             updateUI()
         }
 
@@ -77,11 +75,10 @@ class MainActivity : AppCompatActivity() {
         val lives = gameManager.getLives()
         for (i in main_IMG_hearts.indices) {
             val reverseIndex = main_IMG_hearts.size - 1 - i
-            main_IMG_hearts[reverseIndex].visibility = if (i < lives) View.VISIBLE else View.INVISIBLE
+            main_IMG_hearts[reverseIndex].visibility =
+                if (i < lives) View.VISIBLE else View.INVISIBLE
         }
     }
-
-
 
 
     private fun initViews() {
@@ -233,13 +230,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        // Not strictly necessary with lifecycleScope,
-        // but good practice to explicitly stop the timer
         gameTimer.stop()
     }
 
-
-}// END
+}
 
 
 

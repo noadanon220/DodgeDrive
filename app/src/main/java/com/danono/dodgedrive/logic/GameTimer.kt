@@ -39,8 +39,4 @@ class GameTimer(private val scope: CoroutineScope, private val onTick: () -> Uni
         }
     }
 
-    // Check if the timer is currently running
-    fun isRunning(): Boolean {
-        return timerOn
-    }
 }
