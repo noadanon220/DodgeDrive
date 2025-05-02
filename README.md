@@ -1,19 +1,35 @@
-# DodgeDrive 
+#  DodgeDrive
 
-**DodgeDrive** is a simple Android game where you drive a car and dodge falling crystal rocks. It features 3-lane controls, heart-based lives, vibration feedback, and Toast messages. Built with Kotlin and XML in Android Studio.
+**DodgeDrive** is a simple Android game app developed as part of the **Mobile Application Development** course in a Bachelor's degree in Computer Science.
+
+The game challenges the player to avoid falling rocks by controlling a car across three lanes. The player starts with three lives, which are visually represented as hearts. The game ends after three collisions.
+
+## 🎮 Gameplay
+
+- Tap the left or right button to move the car between lanes.
+- Rocks fall from the top of the screen in random columns.
+- If a rock hits the car, the player loses a life.
+- Vibration and Toast messages provide feedback after each collision.
+- The game stops automatically after all lives are lost.
+
+## 🛠️ Technologies Used
+
+- **Language:** Kotlin  
+- **IDE:** Android Studio  
+- **UI:** XML Layouts with Material Components  
+- **Architecture:** MVVM-inspired logic separation  
+- **Feedback:** Vibration & Toast APIs  
+- **Version Control:** Git & GitHub  
+
+## 🖼️ Screenshots
+
+<p align="center">
+  <img src="screenshots/Screenshot_1.JPEG" alt="Game Start" width="250"/>
+  &nbsp;&nbsp;&nbsp;
+  <img src="screenshots/Screenshot_2.JPEG" alt="After Collision" width="250"/>
+</p>
+
 
 ---
 
-##  Features
-
--  3-lane road control system  
--  Heart-based life system (3 strikes and you're out!)  
--  Vibration feedback on collision  
--  Toast messages for game events  
--  Built with Kotlin and XML in Android Studio
-
----
-
-##  Screenshots
-
-
+Feel free to clone the repo and try the game on your Android device!
