@@ -1,6 +1,6 @@
 #  DodgeDrive
 
-**DodgeDrive** is a simple Android game app developed as part of the **Mobile Application Development** course in a Bachelor's degree in Computer Science.
+**'DodgeDrive'** is a simple Android game app developed as part of the **Mobile Application Development** course in a Bachelor's degree in Computer Science.
 
 The game challenges the player to avoid falling rocks by controlling a car across three lanes. The player starts with three lives, which are visually represented as hearts. The game ends after three collisions.
 
