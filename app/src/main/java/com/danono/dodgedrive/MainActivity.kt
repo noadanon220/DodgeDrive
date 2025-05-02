@@ -75,14 +75,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateHearts() {
         val lives = gameManager.getLives()
-
-        // Update the visibility of heart images based on remaining lives
         for (i in main_IMG_hearts.indices) {
-            // Show heart if the index is less than the number of lives
-            // Hide heart if the index is equal to or greater than the number of lives
-            main_IMG_hearts[i].visibility = if (i < lives) View.VISIBLE else View.INVISIBLE
+            val reverseIndex = main_IMG_hearts.size - 1 - i
+            main_IMG_hearts[reverseIndex].visibility = if (i < lives) View.VISIBLE else View.INVISIBLE
         }
     }
+
 
 
 
