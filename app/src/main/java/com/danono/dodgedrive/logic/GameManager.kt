@@ -1,10 +1,10 @@
-package com.danono.carrace.logic
+package com.danono.dodgedrive.logic
 
-import com.danono.carrace.model.Position
+import com.danono.dodgedrive.model.Position
 
 
 class GameManager {
-    // Car position (0, 1, or 2 for the lanes)
+    // Car position : 0, 1, or 2 for the lanes
     var carPosition = 1
         private set
 

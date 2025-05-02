@@ -1,4 +1,4 @@
-package com.danono.carrace.logic
+package com.danono.dodgedrive.logic
 
 import android.util.Log
 import kotlinx.coroutines.CoroutineScope

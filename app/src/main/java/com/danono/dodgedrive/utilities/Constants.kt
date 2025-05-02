@@ -1,4 +1,4 @@
-package com.danono.carrace.utilities
+package com.danono.dodgedrive.utilities
 
 class Constants {
 

@@ -1,4 +1,4 @@
-package com.danono.carrace
+package com.danono.dodgedrive
 
 import android.os.Bundle
 import android.view.View
@@ -8,10 +8,10 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
-import com.danono.carrace.logic.GameManager
-import com.danono.carrace.logic.GameTimer
-import com.danono.carrace.utilities.Constants
-import com.danono.carrace.utilities.SignalManager
+import com.danono.dodgedrive.logic.GameManager
+import com.danono.dodgedrive.logic.GameTimer
+import com.danono.dodgedrive.utilities.Constants
+import com.danono.dodgedrive.utilities.SignalManager
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import kotlin.arrayOf
 

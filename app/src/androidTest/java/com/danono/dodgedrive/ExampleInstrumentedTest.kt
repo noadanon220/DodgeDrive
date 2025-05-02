@@ -1,4 +1,4 @@
-package com.danono.carrace
+package com.danono.dodgedrive
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

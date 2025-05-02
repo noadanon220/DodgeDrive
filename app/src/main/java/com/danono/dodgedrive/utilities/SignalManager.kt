@@ -1,4 +1,4 @@
-package com.danono.carrace.utilities
+package com.danono.dodgedrive.utilities
 
 import android.content.Context
 import android.content.Context.VIBRATOR_MANAGER_SERVICE

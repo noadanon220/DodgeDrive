@@ -1,7 +1,7 @@
-package com.danono.carrace
+package com.danono.dodgedrive
 
 import android.app.Application
-import com.danono.carrace.utilities.SignalManager
+import com.danono.dodgedrive.utilities.SignalManager
 
 
 class App: Application() {
