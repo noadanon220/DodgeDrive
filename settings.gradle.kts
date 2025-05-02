@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Car Race"
+rootProject.name = "DodgeDrive"
 include(":app")
  
