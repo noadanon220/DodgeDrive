@@ -69,4 +69,12 @@ class GameManager {
     fun moveRight() {
         if (carPosition < Constants.Game.BOARD_COLS - 1) carPosition++
     }
+
+    fun resetGame() {
+        lives = Constants.Game.INITIAL_LIVES
+        rockPositions.clear()
+        rockAddCounter = 0
+        carPosition = Constants.Game.CAR_START_POSITION
+    }
+
 }

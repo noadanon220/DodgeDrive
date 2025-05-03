@@ -56,6 +56,7 @@ class MainActivity : AppCompatActivity() {
                     gameTimer.stop()
                     SignalManager.getInstance().vibrate()
                     SignalManager.getInstance().toast("Game Over")
+                    restartGame() // Restart game instead of stopping completely
                 } else {
                     SignalManager.getInstance().vibrate()
                     SignalManager.getInstance().toast("Ouch! You hit a rock!")
@@ -232,6 +233,16 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         gameTimer.stop()
     }
+
+    private fun restartGame() {
+        gameTimer.stop()
+        gameManager.resetGame()
+        carPosition = gameManager.carPosition
+        updateHearts()
+        updateUI()
+        gameTimer.start(Constants.Timer.DELAY)
+    }
+
 
 }
 
