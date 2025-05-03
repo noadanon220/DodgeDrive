@@ -22,7 +22,7 @@ The game challenges the player to avoid falling rocks by controlling a car acros
 - **Version Control:** Git & GitHub  
 
 ## Installation and usage
-Included in the repo is an APK file of the app. feel free to install it or build the code yourselves
+Included in the repo is an [APK file](https://github.com/noadanon220/DodgeDrive/blob/main/com.danono.dodgedrive.apk) of the app. feel free to install it or build the code yourselves
 
 ## 🖼️ Screenshots
 
