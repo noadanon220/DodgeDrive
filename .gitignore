@@ -1,8 +1,8 @@
 # Built files
 /build
 /captures
-*.apk
-*.ap_
+
+
 
 # Gradle
 .gradle
