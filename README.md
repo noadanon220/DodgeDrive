@@ -21,13 +21,16 @@ The game challenges the player to avoid falling rocks by controlling a car acros
 - **Feedback:** Vibration & Toast APIs  
 - **Version Control:** Git & GitHub  
 
+## Installation and usage
+Included in the repo is an APK file of the app. feel free to install it or build the code yourselves
+
 ## 🖼️ Screenshots
 
 <div align="center">
   <img src="screenshots/gameStart.JPEG" alt="Game Start" width="250"/>
   <img src="screenshots/Collision.JPEG" alt="Collision" width="250"/>
   <img src="screenshots/gameOver.JPEG" alt="Game Over" width="250"/>
-  <video src="screenshots/DodgeDrive_demo.mp4" alt="DodgeDrive Demo" controls width="250"></video>
+  <video src="https://github.com/user-attachments/assets/1cfd9886-8e4a-4806-beda-5e991bcef17a" alt="DodgeDrive Demo" controls width="250"></video>
 </div>
 
 
