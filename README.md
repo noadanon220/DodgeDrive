@@ -21,6 +21,9 @@ The game challenges the player to avoid falling rocks by controlling a car acros
 - **Feedback:** Vibration & Toast APIs  
 - **Version Control:** Git & GitHub  
 
+## Installation and usage
+Included in the repo is an APK file of the app. feel free to install it or build the code yourselves
+
 ## 🖼️ Screenshots
 
 <div align="center">
