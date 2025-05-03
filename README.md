@@ -27,7 +27,7 @@ The game challenges the player to avoid falling rocks by controlling a car acros
   <img src="screenshots/gameStart.JPEG" alt="Game Start" width="250"/>
   <img src="screenshots/Collision.JPEG" alt="Collision" width="250"/>
   <img src="screenshots/gameOver.JPEG" alt="Game Over" width="250"/>
-  <video src="[screenshots/DodgeDrive_demo.mp4](https://github.com/user-attachments/assets/1cfd9886-8e4a-4806-beda-5e991bcef17a)" alt="DodgeDrive Demo" controls width="250"></video>
+  <video src="https://github.com/user-attachments/assets/1cfd9886-8e4a-4806-beda-5e991bcef17a" alt="DodgeDrive Demo" controls width="250"></video>
 </div>
 
 
