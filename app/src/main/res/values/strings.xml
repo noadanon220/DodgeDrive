@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Car Race</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_BTN_slow">Slow Button Mode</string>
+    <string name="menu_BTN_fast">Fast Button Mode</string>
+    <string name="menu_BTN_sensors">Sensors Mode</string>
+    <string name="scoreboard_button">SCORE BOARD 🏆</string>
+    <string name="settings_button">SETTINGS  ⚙️</string>
+    <string name="scores_board_title">Scores Board</string>
 </resources>

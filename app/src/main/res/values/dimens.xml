@@ -4,4 +4,5 @@
     <dimen name="default_stroke">1dp</dimen>
     <dimen name="car_side_padding">60dp</dimen>
     <dimen name="_0dp">0dp</dimen>
+    <dimen name="text_button_size">16sp</dimen>
 </resources>

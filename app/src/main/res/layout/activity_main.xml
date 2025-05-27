@@ -16,8 +16,13 @@
         app:srcCompat="@drawable/background2" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_margin="@dimen/default_margin">
@@ -41,6 +46,20 @@
             app:srcCompat="@drawable/heart" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <TextView
+        android:id="@+id/main_TXT_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="000"
+        android:textColor="@android:color/white"
+        android:textSize="32sp"
+        android:textStyle="bold" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
 
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -111,6 +130,22 @@
                 android:layout_marginHorizontal="@dimen/default_margin"
                 android:layout_weight="1"
                 android:src="@drawable/rock" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_0_3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/default_margin"
+                android:layout_weight="1"
+                android:src="@drawable/rock" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_0_4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/default_margin"
+                android:layout_weight="1"
+                android:src="@drawable/rock" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <!-- Row 1 -->
@@ -139,6 +174,22 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/main_IMG_cell_1_2"
                 android:layout_width="@dimen/_0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/default_margin"
+                android:layout_weight="1"
+                android:src="@drawable/rock" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_1_3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/default_margin"
+                android:layout_weight="1"
+                android:src="@drawable/rock" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_1_4"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="@dimen/default_margin"
                 android:layout_weight="1"
@@ -176,6 +227,22 @@
                 android:layout_marginHorizontal="@dimen/default_margin"
                 android:layout_weight="1"
                 android:src="@drawable/rock" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_2_3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/default_margin"
+                android:layout_weight="1"
+                android:src="@drawable/rock" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_2_4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/default_margin"
+                android:layout_weight="1"
+                android:src="@drawable/rock" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <!-- Row 3 -->
@@ -204,6 +271,22 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/main_IMG_cell_3_2"
                 android:layout_width="@dimen/_0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/default_margin"
+                android:layout_weight="1"
+                android:src="@drawable/rock" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_3_3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/default_margin"
+                android:layout_weight="1"
+                android:src="@drawable/rock" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_3_4"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="@dimen/default_margin"
                 android:layout_weight="1"
@@ -240,6 +323,22 @@
                 android:layout_marginHorizontal="@dimen/default_margin"
                 android:layout_weight="1"
                 android:src="@drawable/rock" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_4_3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/default_margin"
+                android:layout_weight="1"
+                android:src="@drawable/rock" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_4_4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/default_margin"
+                android:layout_weight="1"
+                android:src="@drawable/rock" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <!-- Row 5 -->
@@ -268,6 +367,22 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/main_IMG_cell_5_2"
                 android:layout_width="@dimen/_0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/default_margin"
+                android:layout_weight="1"
+                android:src="@drawable/rock" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_5_3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/default_margin"
+                android:layout_weight="1"
+                android:src="@drawable/rock" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_5_4"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="@dimen/default_margin"
                 android:layout_weight="1"
@@ -305,6 +420,22 @@
                 android:layout_marginHorizontal="@dimen/default_margin"
                 android:layout_weight="1"
                 android:src="@drawable/rock" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_6_3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/default_margin"
+                android:layout_weight="1"
+                android:src="@drawable/rock" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_6_4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/default_margin"
+                android:layout_weight="1"
+                android:src="@drawable/rock" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <!-- Row 7 -->
@@ -333,6 +464,22 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/main_IMG_cell_7_2"
                 android:layout_width="@dimen/_0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/default_margin"
+                android:layout_weight="1"
+                android:src="@drawable/rock" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_7_3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/default_margin"
+                android:layout_weight="1"
+                android:src="@drawable/rock" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_7_4"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="@dimen/default_margin"
                 android:layout_weight="1"
@@ -369,6 +516,22 @@
                 android:layout_marginHorizontal="@dimen/default_margin"
                 android:layout_weight="1"
                 android:src="@drawable/rock" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_8_3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/default_margin"
+                android:layout_weight="1"
+                android:src="@drawable/rock" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_IMG_cell_8_4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/default_margin"
+                android:layout_weight="1"
+                android:src="@drawable/rock" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
 
@@ -386,22 +549,35 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/main_IMG_car_0"
-            android:layout_width="@dimen/_0dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-
             android:src="@drawable/car" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/main_IMG_car_1"
-            android:layout_width="@dimen/_0dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:src="@drawable/car" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/main_IMG_car_2"
-            android:layout_width="@dimen/_0dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/car" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_car_3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/car" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_car_4"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:src="@drawable/car" />

@@ -2,10 +2,39 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="blue_500">#2196F3</color>
-    <color name="red_300">#E57373</color>
-    <color name="green_300">#81C784</color>
+    <color name="blue">#2196F3</color>
+    <color name="red">#E57373</color>
+    <color name="green">#81C784</color>
     <color name="orange_300">#FFB74D</color>
     <color name="orange_400">#FFA726</color>
     <color name="text_color">#000000</color>
+
+    <color name="purple">#acb6e5</color>
+    <color name="light_blue">#86fde8</color>
+
+
+    <color name="brink_pink_50">#fff1f3</color>
+    <color name="brink_pink_100">#ffe4e8</color>
+    <color name="brink_pink_200">#fecdd6</color>
+    <color name="brink_pink_300">#fda4b5</color>
+    <color name="brink_pink_400">#fa6b89</color>
+    <color name="brink_pink_500">#f3406b</color>
+    <color name="brink_pink_600">#e01e56</color>
+    <color name="brink_pink_700">#bd1347</color>
+    <color name="brink_pink_800">#9e1342</color>
+    <color name="brink_pink_900">#87143e</color>
+    <color name="brink_pink_950">#4c051e</color>
+
+    <color name="red_">#ff8370</color>
+    <color name="orange_">#ffb77b</color>
+    <color name="yellow_">#ffdb91</color>
+    <color name="green_">#06ddde</color>
+    <color name="blue_">#6a9cff</color>
+    <color name="purple_">#aa80ff</color>
+    <color name="pink_">#ff67a0</color>
+
+
+
+
+
 </resources>

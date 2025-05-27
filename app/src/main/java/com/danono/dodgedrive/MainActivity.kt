@@ -1,20 +1,34 @@
 package com.danono.dodgedrive
 
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
+import android.widget.FrameLayout
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.core.app.ActivityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
-import com.danono.dodgedrive.R
 import com.danono.dodgedrive.logic.GameManager
 import com.danono.dodgedrive.logic.GameTimer
 import com.danono.dodgedrive.utilities.Constants
 import com.danono.dodgedrive.utilities.SignalManager
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import kotlin.arrayOf
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
+import android.Manifest
+import android.widget.TextView
+import com.danono.dodgedrive.data.PrefsManager
+import com.danono.dodgedrive.interfaces.TiltCallback
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,54 +37,119 @@ class MainActivity : AppCompatActivity() {
     private lateinit var main_LAYOUT_car_row: Array<AppCompatImageView>
     private lateinit var main_FAB_left: ExtendedFloatingActionButton
     private lateinit var main_FAB_right: ExtendedFloatingActionButton
-
     private lateinit var gameTimer: GameTimer
     private lateinit var gameManager: GameManager
 
+    private lateinit var score_FRAME_map: FrameLayout
+    private lateinit var score_FRAME_records: FrameLayout
+    private lateinit var main_TXT_score: TextView
+    private var gameSpeed: Long = Constants.Timer.DELAY
+
+
+
     private var carPosition = 1
+
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private var currentLat: Double = 0.0
+    private var currentLon: Double = 0.0
+    private var finalScore: Int = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+
+        // Apply padding to avoid overlapping with system bars
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
         gameManager = GameManager()
         findViews()
         initViews()
         updateUI()
         initGame()
+
         // Initialize the game timer with lifecycleScope
         gameTimer = GameTimer(lifecycleScope) {
-            // This is the onTick callback that will run on every timer tick
             gameManager.addNewRocks()
             val collision = gameManager.moveRocksDown()
 
             if (collision) {
                 updateHearts()
+
                 if (gameManager.isGameOver()) {
                     gameTimer.stop()
+                    finalScore = gameManager.getScore()
                     SignalManager.getInstance().vibrate()
                     SignalManager.getInstance().toast("Game Over")
-                    restartGame() // Restart game instead of stopping completely
+                    locationPermissionRequest.launch(Manifest.permission.ACCESS_FINE_LOCATION)
                 } else {
                     SignalManager.getInstance().vibrate()
                     SignalManager.getInstance().toast("Ouch! You hit a rock!")
-                    updateHearts()
                 }
             }
 
+            gameManager.addNewCoins()
+            val collectedCoin = gameManager.moveCoinsDown()
+
+            if (collectedCoin) {
+                SignalManager.getInstance().toast("Yay! Collected a coin!")
+            }
 
             updateUI()
         }
 
-        // Start the timer with the delay from Constants
-        gameTimer.start(Constants.Timer.DELAY)
+        // Determine game speed based on mode
+        val gameMode = intent.getStringExtra(MenuActivity.EXTRA_GAME_MODE)
+        gameSpeed = when (gameMode) {
+            MenuActivity.GAME_MODE_FAST -> 500 // fast
+            MenuActivity.GAME_MODE_SLOW -> Constants.Timer.DELAY // slow/default
+            else -> Constants.Timer.DELAY
+        }
+
+        // Start the game loop
+        gameTimer.start(gameSpeed)
     }
+
+
+    private fun getLastLocation() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED
+        ) {
+            return
+        }
+
+        fusedLocationClient.lastLocation
+            .addOnSuccessListener { location ->
+                if (location != null) {
+                    currentLat = location.latitude
+                    currentLon = location.longitude
+                }
+                launchPlayerInfoActivity()
+            }
+            .addOnFailureListener {
+                launchPlayerInfoActivity()
+            }
+    }
+
+    private fun launchPlayerInfoActivity() {
+        val playerName = "Guest"
+        val currentDate = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Date())
+
+        savePlayerInfo(finalScore, currentLat, currentLon)
+
+        val intent = Intent(this, PlayerInfoActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+
 
     private fun updateHearts() {
         val lives = gameManager.getLives()
@@ -78,6 +157,16 @@ class MainActivity : AppCompatActivity() {
             val reverseIndex = main_IMG_hearts.size - 1 - i
             main_IMG_hearts[reverseIndex].visibility =
                 if (i < lives) View.VISIBLE else View.INVISIBLE
+        }
+    }
+
+    private fun savePlayerInfo(score: Int, lat: Double, lon: Double) {
+        val sharedPref = getSharedPreferences("PlayerPrefs", MODE_PRIVATE)
+        sharedPref.edit().apply {
+            putInt("score", score)
+            putFloat("lat", lat.toFloat())
+            putFloat("lon", lon.toFloat())
+            apply()
         }
     }
 
@@ -97,6 +186,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun findViews() {
+
+        main_TXT_score = findViewById(R.id.main_TXT_score)
+
         main_FAB_right = findViewById(R.id.main_FAB_right)
         main_FAB_left = findViewById(R.id.main_FAB_left)
 
@@ -110,89 +202,124 @@ class MainActivity : AppCompatActivity() {
             arrayOf(
                 findViewById<AppCompatImageView>(R.id.main_IMG_cell_0_0),
                 findViewById<AppCompatImageView>(R.id.main_IMG_cell_0_1),
-                findViewById<AppCompatImageView>(R.id.main_IMG_cell_0_2)
+                findViewById<AppCompatImageView>(R.id.main_IMG_cell_0_2),
+                findViewById<AppCompatImageView>(R.id.main_IMG_cell_0_3),
+                findViewById<AppCompatImageView>(R.id.main_IMG_cell_0_4)
             ),
             arrayOf(
                 findViewById<AppCompatImageView>(R.id.main_IMG_cell_1_0),
                 findViewById<AppCompatImageView>(R.id.main_IMG_cell_1_1),
-                findViewById<AppCompatImageView>(R.id.main_IMG_cell_1_2)
+                findViewById<AppCompatImageView>(R.id.main_IMG_cell_1_2),
+                findViewById<AppCompatImageView>(R.id.main_IMG_cell_1_3),
+                findViewById<AppCompatImageView>(R.id.main_IMG_cell_1_4)
             ),
             arrayOf(
                 findViewById<AppCompatImageView>(R.id.main_IMG_cell_2_0),
                 findViewById<AppCompatImageView>(R.id.main_IMG_cell_2_1),
-                findViewById<AppCompatImageView>(R.id.main_IMG_cell_2_2)
+                findViewById<AppCompatImageView>(R.id.main_IMG_cell_2_2),
+                findViewById<AppCompatImageView>(R.id.main_IMG_cell_2_3),
+                findViewById<AppCompatImageView>(R.id.main_IMG_cell_2_4)
             ),
             arrayOf(
                 findViewById<AppCompatImageView>(R.id.main_IMG_cell_3_0),
                 findViewById<AppCompatImageView>(R.id.main_IMG_cell_3_1),
-                findViewById<AppCompatImageView>(R.id.main_IMG_cell_3_2)
+                findViewById<AppCompatImageView>(R.id.main_IMG_cell_3_2),
+                findViewById<AppCompatImageView>(R.id.main_IMG_cell_3_3),
+                findViewById<AppCompatImageView>(R.id.main_IMG_cell_3_4)
             ),
             arrayOf(
                 findViewById<AppCompatImageView>(R.id.main_IMG_cell_4_0),
                 findViewById<AppCompatImageView>(R.id.main_IMG_cell_4_1),
-                findViewById<AppCompatImageView>(R.id.main_IMG_cell_4_2)
+                findViewById<AppCompatImageView>(R.id.main_IMG_cell_4_2),
+                findViewById<AppCompatImageView>(R.id.main_IMG_cell_4_3),
+                findViewById<AppCompatImageView>(R.id.main_IMG_cell_4_4)
             ),
             arrayOf(
                 findViewById<AppCompatImageView>(R.id.main_IMG_cell_5_0),
                 findViewById<AppCompatImageView>(R.id.main_IMG_cell_5_1),
-                findViewById<AppCompatImageView>(R.id.main_IMG_cell_5_2)
+                findViewById<AppCompatImageView>(R.id.main_IMG_cell_5_2),
+                findViewById<AppCompatImageView>(R.id.main_IMG_cell_5_3),
+                findViewById<AppCompatImageView>(R.id.main_IMG_cell_5_4)
             ),
             arrayOf(
                 findViewById<AppCompatImageView>(R.id.main_IMG_cell_6_0),
                 findViewById<AppCompatImageView>(R.id.main_IMG_cell_6_1),
-                findViewById<AppCompatImageView>(R.id.main_IMG_cell_6_2)
+                findViewById<AppCompatImageView>(R.id.main_IMG_cell_6_2),
+                findViewById<AppCompatImageView>(R.id.main_IMG_cell_6_3),
+                findViewById<AppCompatImageView>(R.id.main_IMG_cell_6_4)
             ),
             arrayOf(
                 findViewById<AppCompatImageView>(R.id.main_IMG_cell_7_0),
                 findViewById<AppCompatImageView>(R.id.main_IMG_cell_7_1),
-                findViewById<AppCompatImageView>(R.id.main_IMG_cell_7_2)
+                findViewById<AppCompatImageView>(R.id.main_IMG_cell_7_2),
+                findViewById<AppCompatImageView>(R.id.main_IMG_cell_7_3),
+                findViewById<AppCompatImageView>(R.id.main_IMG_cell_7_4)
             ),
             arrayOf(
                 findViewById<AppCompatImageView>(R.id.main_IMG_cell_8_0),
                 findViewById<AppCompatImageView>(R.id.main_IMG_cell_8_1),
-                findViewById<AppCompatImageView>(R.id.main_IMG_cell_8_2)
+                findViewById<AppCompatImageView>(R.id.main_IMG_cell_8_2),
+                findViewById<AppCompatImageView>(R.id.main_IMG_cell_8_3),
+                findViewById<AppCompatImageView>(R.id.main_IMG_cell_8_4)
             )
         )
 
         main_LAYOUT_car_row = arrayOf(
             findViewById<AppCompatImageView>(R.id.main_IMG_car_0),
             findViewById<AppCompatImageView>(R.id.main_IMG_car_1),
-            findViewById<AppCompatImageView>(R.id.main_IMG_car_2)
+            findViewById<AppCompatImageView>(R.id.main_IMG_car_2),
+            findViewById<AppCompatImageView>(R.id.main_IMG_car_3),
+            findViewById<AppCompatImageView>(R.id.main_IMG_car_4)
         )
     }
 
 
     private fun updateUI() {
-        drawCar()
-        drawRocks()
-    }
-
-    private fun drawCar() {
-        // Hide all cars
-        for (carView in main_LAYOUT_car_row) {
-            carView.visibility = View.INVISIBLE
-        }
-        // Show only the current car position
-        main_LAYOUT_car_row[carPosition].visibility = View.VISIBLE
-    }
-
-    private fun drawRocks() {
-        // This would typically be driven by your GameManager logic
-        // For example, if gameManager has a method to get the rock positions:
-        val rockPositions = gameManager.getRockPositions()
-
-        // Clear all previous rocks
+        // Clear all cells first
         for (row in main_LAYOUT_board.indices) {
             for (col in main_LAYOUT_board[row].indices) {
-                main_LAYOUT_board[row][col].visibility = View.INVISIBLE
+                main_LAYOUT_board[row][col].apply {
+                    visibility = View.INVISIBLE
+                    setImageResource(R.drawable.rock) // Reset to default image
+                }
             }
         }
 
-        // Set visible only the cells that should have rocks
-        for (position in rockPositions) {
-            main_LAYOUT_board[position.row][position.col].visibility = View.VISIBLE
+        drawCar()
+        drawRocks()
+        drawCoins()
+        main_TXT_score.text = "Score: ${gameManager.getScore()}"
+    }
+
+    private fun drawCar() {
+        for (i in main_LAYOUT_car_row.indices) {
+            main_LAYOUT_car_row[i].visibility =
+                if (i == carPosition) View.VISIBLE else View.INVISIBLE
         }
     }
+
+
+    private fun drawRocks() {
+        val rockPositions = gameManager.getRockPositions()
+        for (position in rockPositions) {
+            main_LAYOUT_board[position.row][position.col].apply {
+                setImageResource(R.drawable.rock)
+                visibility = View.VISIBLE
+            }
+        }
+    }
+
+    private fun drawCoins() {
+        val coinPositions = gameManager.getCoinPositions()
+        for (position in coinPositions) {
+            main_LAYOUT_board[position.row][position.col].apply {
+                setImageResource(R.drawable.coin)
+                visibility = View.VISIBLE
+            }
+        }
+    }
+
+
 
     private fun initGame() {
         // Hide all rocks initially
@@ -223,11 +350,22 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        // Resume the game when the activity is resumed
+        // Resume only if the game is not over
         if (!gameManager.isGameOver()) {
-            gameTimer.start(Constants.Timer.DELAY)
+            gameTimer.start(gameSpeed)
         }
     }
+
+    private val locationPermissionRequest = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted: Boolean ->
+        if (isGranted) {
+            getLastLocation()
+        } else {
+            Toast.makeText(this, "Location permission denied", Toast.LENGTH_SHORT).show()
+        }
+    }
+
 
     override fun onDestroy() {
         super.onDestroy()
