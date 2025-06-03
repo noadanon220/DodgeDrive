@@ -1,9 +1,11 @@
 package com.danono.dodgedrive.logic
 
+import android.content.Context
 import com.danono.dodgedrive.model.Position
 import com.danono.dodgedrive.utilities.Constants
+import com.danono.dodgedrive.utilities.SoundManager
 
-class GameManager {
+class GameManager(private val context: Context) {
     var carPosition = Constants.Game.CAR_START_POSITION
         private set
 
@@ -95,6 +97,7 @@ class GameManager {
             // Check for collision only if rock reaches the car's row
             if (newRow == Constants.Game.BOARD_ROWS - 1 && position.col == carPosition) {
                 collision = true
+                SoundManager.playRockCollision(context)
                 continue
             }
 

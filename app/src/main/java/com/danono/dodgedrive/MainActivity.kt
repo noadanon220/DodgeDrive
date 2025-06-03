@@ -18,6 +18,7 @@ import com.danono.dodgedrive.logic.GameManager
 import com.danono.dodgedrive.logic.GameTimer
 import com.danono.dodgedrive.utilities.Constants
 import com.danono.dodgedrive.utilities.SignalManager
+import com.danono.dodgedrive.utilities.SoundManager
 import com.danono.dodgedrive.utilities.TiltDetector
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import kotlin.arrayOf
@@ -61,6 +62,9 @@ class MainActivity : AppCompatActivity(), TiltCallback {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
+        // Initialize sound manager
+        SoundManager.init(this)
+
         // Apply padding to avoid overlapping with system bars
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -70,7 +74,7 @@ class MainActivity : AppCompatActivity(), TiltCallback {
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
-        gameManager = GameManager()
+        gameManager = GameManager(this)
         findViews()
         initViews()
         updateUI()
@@ -133,6 +137,7 @@ class MainActivity : AppCompatActivity(), TiltCallback {
         if (isSensorMode) {
             tiltDetector.start()
         }
+        SoundManager.start()
     }
 
     override fun onPause() {
@@ -140,6 +145,7 @@ class MainActivity : AppCompatActivity(), TiltCallback {
         if (isSensorMode) {
             tiltDetector.stop()
         }
+        SoundManager.pause()
     }
 
     override fun tiltX() {
@@ -381,6 +387,7 @@ class MainActivity : AppCompatActivity(), TiltCallback {
     override fun onDestroy() {
         super.onDestroy()
         gameTimer.stop()
+        SoundManager.stop()
     }
 
     private fun restartGame() {

@@ -5,7 +5,7 @@ import java.time.LocalDateTime
 data class ScoreRecord(
     val playerName: String,
     val score: Int,
-    val date: LocalDateTime,
+    val date: LocalDateTime = LocalDateTime.now(),
     val latitude: Double,
     val longitude: Double,
     val distance: Int = 0

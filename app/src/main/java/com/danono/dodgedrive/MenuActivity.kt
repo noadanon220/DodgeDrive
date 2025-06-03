@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.button.MaterialButton
+import com.danono.dodgedrive.utilities.SoundManager
 import kotlin.jvm.java
 import com.danono.dodgedrive.R
 
@@ -23,8 +24,26 @@ class MenuActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
 
+        // Initialize sound manager
+        SoundManager.init(this)
+
         findViews()
         initViews()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        SoundManager.start()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        SoundManager.pause()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        SoundManager.stop()
     }
 
     private fun findViews() {
