@@ -136,6 +136,7 @@ class GameManager(private val context: Context) {
             if (newRow == Constants.Game.BOARD_ROWS - 1 && position.col == carPosition) {
                 collected = true
                 score += 10
+                SoundManager.playCoinCollection(context)
                 continue
             }
             if (newRow < Constants.Game.BOARD_ROWS) {
