@@ -9,6 +9,7 @@ object SoundManager {
     private var isPlaying = false
     private var rockSoundPlayer: MediaPlayer? = null
     private var coinSoundPlayer: MediaPlayer? = null
+    private var heartSoundPlayer: MediaPlayer? = null
 
     fun init(context: Context) {
         if (mediaPlayer == null) {
@@ -44,6 +45,8 @@ object SoundManager {
         rockSoundPlayer = null
         coinSoundPlayer?.release()
         coinSoundPlayer = null
+        heartSoundPlayer?.release()
+        heartSoundPlayer = null
     }
 
     fun playRockCollision(context: Context) {
@@ -58,6 +61,15 @@ object SoundManager {
     fun playCoinCollection(context: Context) {
         coinSoundPlayer?.release()
         coinSoundPlayer = MediaPlayer.create(context, R.raw.coin_sound).apply {
+            setVolume(1.0f, 1.0f)
+            setOnCompletionListener { release() }
+            start()
+        }
+    }
+
+    fun playHeartCollection(context: Context) {
+        heartSoundPlayer?.release()
+        heartSoundPlayer = MediaPlayer.create(context, R.raw.heart_sound).apply {
             setVolume(1.0f, 1.0f)
             setOnCompletionListener { release() }
             start()

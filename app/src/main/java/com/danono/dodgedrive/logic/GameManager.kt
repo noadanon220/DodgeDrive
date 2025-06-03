@@ -82,24 +82,13 @@ class GameManager(private val context: Context) {
     }
 
     fun addNewHearts() {
-        if (heartPositions.size < MAX_ROCKS / 2) { // Allow fewer hearts than rocks/coins
-            heartAddCounter++
-            if (heartAddCounter >= HEART_ADD_DELAY) {
-                heartAddCounter = 0
+        heartAddCounter++
+        if (heartAddCounter >= HEART_ADD_DELAY) {
+            heartAddCounter = 0
 
-                // Block columns that already contain hearts, rocks, or coins anywhere on board
-                val blockedColumns = (heartPositions + rockPositions + coinPositions)
-                    .map { it.col }
-                    .toSet()
-
-                val availableColumns = (0 until Constants.Game.BOARD_COLS)
-                    .filter { it !in blockedColumns }
-
-                if (availableColumns.isNotEmpty()) {
-                    val randomColumn = availableColumns.random()
-                    heartPositions.add(Position(0, randomColumn))
-                }
-            }
+            // Find a random column for the heart
+            val randomColumn = (0 until Constants.Game.BOARD_COLS).random()
+            heartPositions.add(Position(0, randomColumn))
         }
     }
 
@@ -183,20 +172,12 @@ class GameManager(private val context: Context) {
 
         for (position in heartPositions) {
             val newRow = position.row + 1
-            
-            // Skip if heart would move into a cell that has a rock/coin or would move to same position as a rock/coin
-            val objectAtNewPosition = (rockPositions + coinPositions).any { 
-                (it.row == newRow && it.col == position.col) || 
-                (it.row == position.row + 1 && it.col == position.col)
-            }
-            if (objectAtNewPosition) {
-                continue
-            }
 
             if (newRow == Constants.Game.BOARD_ROWS - 1 && position.col == carPosition) {
                 collected = true
                 if (lives < Constants.Game.INITIAL_LIVES) {
                     lives++
+                    SoundManager.playHeartCollection(context)
                 }
                 continue
             }
