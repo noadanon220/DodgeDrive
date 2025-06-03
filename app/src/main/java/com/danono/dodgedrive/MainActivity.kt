@@ -18,6 +18,7 @@ import com.danono.dodgedrive.logic.GameManager
 import com.danono.dodgedrive.logic.GameTimer
 import com.danono.dodgedrive.utilities.Constants
 import com.danono.dodgedrive.utilities.SignalManager
+import com.danono.dodgedrive.utilities.TiltDetector
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import kotlin.arrayOf
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -30,7 +31,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), TiltCallback {
 
     private lateinit var main_IMG_hearts: Array<AppCompatImageView>
     private lateinit var main_LAYOUT_board: Array<Array<AppCompatImageView>>
@@ -39,22 +40,21 @@ class MainActivity : AppCompatActivity() {
     private lateinit var main_FAB_right: ExtendedFloatingActionButton
     private lateinit var gameTimer: GameTimer
     private lateinit var gameManager: GameManager
+    private lateinit var tiltDetector: TiltDetector
 
     private lateinit var score_FRAME_map: FrameLayout
     private lateinit var score_FRAME_records: FrameLayout
     private lateinit var main_TXT_score: TextView
     private var gameSpeed: Long = Constants.Timer.DELAY
 
-
-
     private var carPosition = 1
+    private var isSensorMode = false
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var currentLat: Double = 0.0
     private var currentLon: Double = 0.0
     private var finalScore: Int = 0
     private var finalDistance: Int = 0
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -116,10 +116,47 @@ class MainActivity : AppCompatActivity() {
             else -> Constants.Timer.DELAY
         }
 
+        // Initialize sensor mode if selected
+        isSensorMode = gameMode == MenuActivity.GAME_MODE_SENSORS
+        if (isSensorMode) {
+            tiltDetector = TiltDetector(this, this)
+            main_FAB_left.visibility = View.GONE
+            main_FAB_right.visibility = View.GONE
+        }
+
         // Start the game loop
         gameTimer.start(gameSpeed)
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (isSensorMode) {
+            tiltDetector.start()
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (isSensorMode) {
+            tiltDetector.stop()
+        }
+    }
+
+    override fun tiltX() {
+        // X-axis tilt controls left/right movement
+        val x = tiltDetector.tiltCounterX
+        if (x > 0) {
+            gameManager.moveRight()
+        } else {
+            gameManager.moveLeft()
+        }
+        carPosition = gameManager.carPosition
+        updateUI()
+    }
+
+    override fun tiltY() {
+        // Y-axis tilt is not used for movement
+    }
 
     private fun getLastLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
@@ -156,8 +193,6 @@ class MainActivity : AppCompatActivity() {
         finish()
     }
 
-
-
     private fun updateHearts() {
         val lives = gameManager.getLives()
         for (i in main_IMG_hearts.indices) {
@@ -178,7 +213,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
     private fun initViews() {
         main_FAB_right.setOnClickListener {
             gameManager.moveRight()
@@ -194,7 +228,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun findViews() {
-
         main_TXT_score = findViewById(R.id.main_TXT_score)
 
         main_FAB_right = findViewById(R.id.main_FAB_right)
@@ -281,7 +314,6 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-
     private fun updateUI() {
         // Clear all cells first
         for (row in main_LAYOUT_board.indices) {
@@ -306,7 +338,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
     private fun drawRocks() {
         val rockPositions = gameManager.getRockPositions()
         for (position in rockPositions) {
@@ -327,8 +358,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
-
     private fun initGame() {
         // Hide all rocks initially
         for (row in 0 until Constants.Game.BOARD_ROWS) {
@@ -336,7 +365,6 @@ class MainActivity : AppCompatActivity() {
                 main_LAYOUT_board[row][col].visibility = View.INVISIBLE
             }
         }
-
 
         // Show only one car (middle position by default)
         for (i in main_LAYOUT_car_row.indices) {
@@ -349,31 +377,6 @@ class MainActivity : AppCompatActivity() {
             heart.visibility = View.VISIBLE
         }
     }
-
-    override fun onPause() {
-        super.onPause()
-        // Pause the game when the activity is paused
-        gameTimer.stop()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        // Resume only if the game is not over
-        if (!gameManager.isGameOver()) {
-            gameTimer.start(gameSpeed)
-        }
-    }
-
-    private val locationPermissionRequest = registerForActivityResult(
-        ActivityResultContracts.RequestPermission()
-    ) { isGranted: Boolean ->
-        if (isGranted) {
-            getLastLocation()
-        } else {
-            Toast.makeText(this, "Location permission denied", Toast.LENGTH_SHORT).show()
-        }
-    }
-
 
     override fun onDestroy() {
         super.onDestroy()
@@ -389,7 +392,15 @@ class MainActivity : AppCompatActivity() {
         gameTimer.start(Constants.Timer.DELAY)
     }
 
-
+    private val locationPermissionRequest = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted: Boolean ->
+        if (isGranted) {
+            getLastLocation()
+        } else {
+            Toast.makeText(this, "Location permission denied", Toast.LENGTH_SHORT).show()
+        }
+    }
 }
 
 

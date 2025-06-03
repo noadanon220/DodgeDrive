@@ -1,6 +1,5 @@
 package com.danono.dodgedrive.utilities
 
-
 import android.content.Context
 import android.hardware.Sensor
 import android.hardware.SensorEvent
@@ -26,6 +25,8 @@ class TiltDetector(context: Context, private var tiltCallback: TiltCallback?) {
         private set
 
     private var timestamp: Long = 0L
+    private val TILT_THRESHOLD = 2.0f
+    private val TILT_DELAY = 200L // Reduced delay for more responsive controls
 
     init {
         initEventListener()
@@ -35,46 +36,39 @@ class TiltDetector(context: Context, private var tiltCallback: TiltCallback?) {
         sensorEventListener = object : SensorEventListener {
             override fun onSensorChanged(event: SensorEvent) {
                 val x = event.values[0]
-                val y = event.values[1]
-                calculateTilt(x, y)
+                calculateTilt(x)
             }
 
             override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
                 // pass
             }
-
         }
     }
 
-    private fun calculateTilt(x: Float, y: Float) {
-        if (System.currentTimeMillis() - timestamp >= 500) {
+    private fun calculateTilt(x: Float) {
+        if (System.currentTimeMillis() - timestamp >= TILT_DELAY) {
             timestamp = System.currentTimeMillis()
-            if (abs(x) >= 3.0) {
-                tiltCounterX++
+            if (abs(x) >= TILT_THRESHOLD) {
+                tiltCounterX = if (x > 0) 1 else -1
                 tiltCallback?.tiltX()
-            }
-
-            if (abs(y) >= 3.0) {
-                tiltCounterY++
-                tiltCallback?.tiltY()
+            } else {
+                tiltCounterX = 0
             }
         }
     }
 
     fun start() {
-        sensorManager
-            .registerListener(
-                sensorEventListener,
-                sensor,
-                SensorManager.SENSOR_DELAY_NORMAL
-            )
+        sensorManager.registerListener(
+            sensorEventListener,
+            sensor,
+            SensorManager.SENSOR_DELAY_GAME // Using game mode for better responsiveness
+        )
     }
 
     fun stop() {
-        sensorManager
-            .unregisterListener(
-                sensorEventListener,
-                sensor
-            )
+        sensorManager.unregisterListener(
+            sensorEventListener,
+            sensor
+        )
     }
 }
