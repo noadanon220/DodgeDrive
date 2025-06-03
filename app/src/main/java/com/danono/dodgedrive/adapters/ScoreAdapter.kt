@@ -39,14 +39,15 @@ class ScoreAdapter(private var scores: List<ScoreRecord>) :
         val score = getItem(position)
         with(holder.binding) {
             playerName.text = score.playerName
-            scoreDate.text = score.date.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy"))
+
+            scoreDate.text = score.date?.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm"))
+                ?: "Unknown"
+
             scoreValue.text = score.score.toString()
+
             milesValue.text = String.format("%.2f", score.distance * 0.05)
         }
     }
-
-
-
 
     override fun getItemCount() = scores.size
 

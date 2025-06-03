@@ -1,6 +1,5 @@
 package com.danono.dodgedrive
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
@@ -10,8 +9,7 @@ import com.danono.dodgedrive.model.ScoreManager
 import com.danono.dodgedrive.model.ScoreRecord
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
-import java.text.SimpleDateFormat
-import java.util.*
+import java.time.LocalDateTime
 
 class PlayerInfoActivity : AppCompatActivity() {
 
@@ -44,27 +42,18 @@ class PlayerInfoActivity : AppCompatActivity() {
                 val record = ScoreRecord.Builder()
                     .playerName(name)
                     .score(score)
+                    .date(LocalDateTime.now())
                     .location(lat, lon)
+                    .distance(distance)
                     .build()
 
                 ScoreManager.addScore(record)
 
-                val sharedPref = getSharedPreferences("PlayerPrefs", Context.MODE_PRIVATE)
-                val editor = sharedPref.edit()
-
-                val date = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Date())
-
-                editor.putString("player_name", name)
-                editor.putInt("player_score", score)
-                editor.putString("player_date", date)
-                editor.putString("player_lat", lat.toString())
-                editor.putString("player_lon", lon.toString())
-                editor.putFloat("player_distance", distance.toFloat())
-                editor.apply()
-
-                val intent = Intent(this, ScoreboardActivity::class.java)
-                intent.putExtra(ScoreboardActivity.EXTRA_PLAYER_NAME, name)
-                intent.putExtra(ScoreboardActivity.EXTRA_SCORE, score)
+                val intent = Intent(this, ScoreboardActivity::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    putExtra(ScoreboardActivity.EXTRA_PLAYER_NAME, name)
+                    putExtra(ScoreboardActivity.EXTRA_SCORE, score)
+                }
                 startActivity(intent)
                 finish()
             } else {

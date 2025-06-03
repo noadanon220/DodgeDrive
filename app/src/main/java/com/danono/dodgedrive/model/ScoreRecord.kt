@@ -1,11 +1,11 @@
 package com.danono.dodgedrive.model
 
-import java.time.LocalDate
+import java.time.LocalDateTime
 
 data class ScoreRecord(
     val playerName: String,
     val score: Int,
-    val date: LocalDate,
+    val date: LocalDateTime,
     val latitude: Double,
     val longitude: Double,
     val distance: Int = 0
@@ -13,14 +13,14 @@ data class ScoreRecord(
     class Builder(
         var playerName: String = "",
         var score: Int = 0,
-        var date: LocalDate = LocalDate.now(),
+        var date: LocalDateTime = LocalDateTime.now(),
         var latitude: Double = 0.0,
         var longitude: Double = 0.0,
         var distance: Int = 0
     ) {
         fun playerName(name: String) = apply { this.playerName = name }
         fun score(score: Int) = apply { this.score = score }
-        fun date(date: LocalDate) = apply { this.date = date }
+        fun date(date: LocalDateTime) = apply { this.date = date }
         fun location(lat: Double, lon: Double) = apply {
             this.latitude = lat
             this.longitude = lon
