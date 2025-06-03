@@ -53,6 +53,7 @@ class MainActivity : AppCompatActivity() {
     private var currentLat: Double = 0.0
     private var currentLon: Double = 0.0
     private var finalScore: Int = 0
+    private var finalDistance: Int = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,6 +78,7 @@ class MainActivity : AppCompatActivity() {
 
         // Initialize the game timer with lifecycleScope
         gameTimer = GameTimer(lifecycleScope) {
+            gameManager.tickGameProgress() // increment distance
             gameManager.addNewRocks()
             val collision = gameManager.moveRocksDown()
 
@@ -86,6 +88,7 @@ class MainActivity : AppCompatActivity() {
                 if (gameManager.isGameOver()) {
                     gameTimer.stop()
                     finalScore = gameManager.getScore()
+                    finalDistance = gameManager.getDistance() // store distance
                     SignalManager.getInstance().vibrate()
                     SignalManager.getInstance().toast("Game Over")
                     locationPermissionRequest.launch(Manifest.permission.ACCESS_FINE_LOCATION)
@@ -145,6 +148,10 @@ class MainActivity : AppCompatActivity() {
         savePlayerInfo(finalScore, currentLat, currentLon)
 
         val intent = Intent(this, PlayerInfoActivity::class.java)
+        intent.putExtra("EXTRA_SCORE", finalScore)
+        intent.putExtra("EXTRA_DISTANCE", finalDistance)
+        intent.putExtra("EXTRA_LAT", currentLat)
+        intent.putExtra("EXTRA_LON", currentLon)
         startActivity(intent)
         finish()
     }
@@ -164,6 +171,7 @@ class MainActivity : AppCompatActivity() {
         val sharedPref = getSharedPreferences("PlayerPrefs", MODE_PRIVATE)
         sharedPref.edit().apply {
             putInt("score", score)
+            putInt("distance", finalDistance)
             putFloat("lat", lat.toFloat())
             putFloat("lon", lon.toFloat())
             apply()

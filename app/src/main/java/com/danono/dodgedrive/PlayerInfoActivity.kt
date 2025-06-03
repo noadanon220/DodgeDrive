@@ -2,12 +2,10 @@ package com.danono.dodgedrive
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Typeface
 import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.danono.dodgedrive.databinding.ActivityPlayerInfoBinding
 import com.danono.dodgedrive.model.ScoreManager
 import com.danono.dodgedrive.model.ScoreRecord
 import com.google.android.material.button.MaterialButton
@@ -28,14 +26,17 @@ class PlayerInfoActivity : AppCompatActivity() {
         userinfo_BTN_saveRecord = findViewById(R.id.userinfo_BTN_saveRecord)
 
         val score = intent.getIntExtra("EXTRA_SCORE", 0)
+        val distance = intent.getIntExtra("EXTRA_DISTANCE", 0)
         val lat = intent.getDoubleExtra("EXTRA_LAT", 0.0)
         val lon = intent.getDoubleExtra("EXTRA_LON", 0.0)
 
         findViewById<TextView>(R.id.palyrinfo_TXT_score).text = "Score"
-        findViewById<TextView>(R.id.palyrinfo_TXT_miles).text = "Miles"
-
         findViewById<TextView>(R.id.playerinfo_TXT_scorevalue).text = score.toString()
-        findViewById<TextView>(R.id.playerinfo_TXT_milesvalue).text = "Saved"
+
+        findViewById<TextView>(R.id.palyrinfo_TXT_miles).text = "Distance (miles)"
+        findViewById<TextView>(R.id.playerinfo_TXT_milesvalue).text = String.format("%.2f", distance * 0.05)
+
+        Toast.makeText(this, getString(R.string.enter_name_toast), Toast.LENGTH_SHORT).show()
 
         userinfo_BTN_saveRecord.setOnClickListener {
             val name = userinfo_ET_text.text.toString().trim()
@@ -48,7 +49,6 @@ class PlayerInfoActivity : AppCompatActivity() {
 
                 ScoreManager.addScore(record)
 
-                // Save to SharedPreferences
                 val sharedPref = getSharedPreferences("PlayerPrefs", Context.MODE_PRIVATE)
                 val editor = sharedPref.edit()
 
@@ -59,9 +59,9 @@ class PlayerInfoActivity : AppCompatActivity() {
                 editor.putString("player_date", date)
                 editor.putString("player_lat", lat.toString())
                 editor.putString("player_lon", lon.toString())
-                editor.apply()  // Save the changes
+                editor.putFloat("player_distance", distance.toFloat())
+                editor.apply()
 
-                // Go to scoreboard screen
                 val intent = Intent(this, ScoreboardActivity::class.java)
                 intent.putExtra(ScoreboardActivity.EXTRA_PLAYER_NAME, name)
                 intent.putExtra(ScoreboardActivity.EXTRA_SCORE, score)

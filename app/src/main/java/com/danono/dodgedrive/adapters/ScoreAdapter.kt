@@ -41,7 +41,7 @@ class ScoreAdapter(private var scores: List<ScoreRecord>) :
             playerName.text = score.playerName
             scoreDate.text = score.date.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy"))
             scoreValue.text = score.score.toString()
-            milesValue.text = "Saved"
+            milesValue.text = String.format("%.2f", score.distance * 0.05)
         }
     }
 

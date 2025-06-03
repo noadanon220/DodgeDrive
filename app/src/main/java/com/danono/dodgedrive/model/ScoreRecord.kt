@@ -7,14 +7,16 @@ data class ScoreRecord(
     val score: Int,
     val date: LocalDate,
     val latitude: Double,
-    val longitude: Double
+    val longitude: Double,
+    val distance: Int = 0
 ) {
     class Builder(
         var playerName: String = "",
         var score: Int = 0,
         var date: LocalDate = LocalDate.now(),
         var latitude: Double = 0.0,
-        var longitude: Double = 0.0
+        var longitude: Double = 0.0,
+        var distance: Int = 0
     ) {
         fun playerName(name: String) = apply { this.playerName = name }
         fun score(score: Int) = apply { this.score = score }
@@ -23,13 +25,15 @@ data class ScoreRecord(
             this.latitude = lat
             this.longitude = lon
         }
+        fun distance(distance: Int) = apply { this.distance = distance }
 
         fun build() = ScoreRecord(
             playerName,
             score,
             date,
             latitude,
-            longitude
+            longitude,
+            distance
         )
     }
 }

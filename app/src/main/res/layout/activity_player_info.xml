@@ -1,187 +1,158 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_player_info"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/road_bg"
-    tools:context=".fragments.ScoreListFragment">
+    android:background="#FFFFFF"
+    android:padding="24dp"
+    tools:context=".PlayerInfoActivity">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/playerinfo_TXT_congrats"
+    <!-- Header -->
+    <TextView
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:paddingTop="20dp"
-        android:paddingBottom="12dp"
         android:text="Congratulations!"
-        android:textColor="@color/black"
-        android:textSize="32sp"
-        android:textStyle="bold" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/playerinfo_TXT_subCongrats"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/playerinfo_TXT_congrats"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="#0A285F"
         android:layout_centerHorizontal="true"
-        android:paddingTop="4dp"
-        android:paddingBottom="12dp"
-        android:text="You held on like a champ!"
-        android:textColor="@color/black"
-        android:textSize="24sp" />
+        android:layout_marginTop="32dp" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/playerinfo_TXT_scoretitle"
+    <TextView
+        android:id="@+id/subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/playerinfo_TXT_subCongrats"
-        android:paddingHorizontal="34dp"
-        android:paddingTop="20dp"
-        android:paddingBottom="12dp"
-        android:text="Your final score"
-        android:textColor="@color/black"
-        android:textSize="32sp"
-        android:textStyle="bold" />
+        android:text="You held on like a champ!"
+        android:textSize="18sp"
+        android:textColor="#33435C"
+        android:layout_below="@id/title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp" />
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <!-- Score Title -->
+    <TextView
+        android:id="@+id/final_score_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your final score"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#0A285F"
+        android:layout_below="@id/subtitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp" />
+
+    <!-- Score Cards -->
+    <LinearLayout
         android:id="@+id/userinfo_BOX_record"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/playerinfo_TXT_scoretitle"
-        android:paddingHorizontal="34dp">
+        android:layout_below="@id/final_score_label"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:weightSum="2">
 
+        <!-- Score Card -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="@color/green"
-            app:strokeColor="@color/black"
-            app:strokeWidth="2dp">
+            android:layout_marginEnd="8dp"
+            app:cardCornerRadius="16dp"
+            app:cardBackgroundColor="#D6EDFF">
 
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="120dp"
                 android:orientation="vertical"
-                android:paddingHorizontal="24dp"
-                android:paddingVertical="24dp">
+                android:gravity="center"
+                android:padding="16dp">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <TextView
                     android:id="@+id/palyrinfo_TXT_score"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:paddingTop="16dp"
                     android:text="Score"
-                    android:textColor="@color/black"
-                    android:textSize="24sp" />
+                    android:textColor="#0A285F"
+                    android:textSize="16sp" />
 
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="8dp" />
-
-                <androidx.appcompat.widget.AppCompatTextView
+                <TextView
                     android:id="@+id/playerinfo_TXT_scorevalue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/palyrinfo_TXT_score"
                     android:text="000"
-                    android:textColor="@color/black"
-                    android:textSize="24dp"
-                    android:textStyle="bold" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
+                    android:textColor="#0A285F"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <View
-            android:layout_width="16dp"
-            android:layout_height="0dp" />
-
+        <!-- Miles Card -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="@color/green"
-            app:strokeColor="@color/black"
-            app:strokeWidth="2dp">
+            android:layout_marginStart="8dp"
+            app:cardCornerRadius="16dp"
+            app:cardBackgroundColor="#D6EDFF">
 
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="120dp"
                 android:orientation="vertical"
-                android:paddingHorizontal="24dp"
-                android:paddingVertical="24dp">
+                android:gravity="center"
+                android:padding="16dp">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <TextView
                     android:id="@+id/palyrinfo_TXT_miles"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:paddingTop="16dp"
                     android:text="Miles"
-                    android:textColor="@color/black"
+                    android:textColor="#0A285F"
+                    android:textSize="16sp" />
 
-                    android:textSize="24sp" />
-
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="8dp" />
-
-                <androidx.appcompat.widget.AppCompatTextView
+                <TextView
                     android:id="@+id/playerinfo_TXT_milesvalue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/palyrinfo_TXT_score"
                     android:text="000"
-                    android:textColor="@color/black"
-                    android:textSize="24dp"
-
-                    android:textStyle="bold" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                    android:textColor="#0A285F"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-    <View
-        android:id="@+id/userinfo_VIEW_divider"
-        android:layout_width="match_parent"
-        android:layout_height="32dp"
-        android:layout_below="@id/userinfo_BOX_record" />
-
-
+    <!-- Input -->
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/userinfo_ET_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/userinfo_VIEW_divider"
-        android:layout_centerInParent="true"
-        android:layout_marginHorizontal="34dp"
-        android:gravity="center"
-        android:hint="Please enter your Name"
-        android:inputType="text"
-        android:paddingTop="20dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        android:textSize="18sp" />
+        android:layout_below="@id/userinfo_BOX_record"
+        android:layout_marginTop="32dp"
+        android:hint="Enter your name"
+        android:background="@drawable/edittext_rounded"
+        android:textColor="#0A285F"
+        android:textColorHint="#999999"
+        android:padding="12dp"
+        android:textSize="16sp"
+        android:inputType="textPersonName" />
 
+    <!-- Button -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/userinfo_BTN_saveRecord"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/userinfo_ET_text"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="16dp"
         android:layout_marginTop="16dp"
-        android:backgroundTint="@color/red_"
+        android:backgroundTint="#FF6B6B"
         android:text="Save Record"
-        android:textColor="@color/black"
-        android:textSize="18sp" />
-
-
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:padding="12dp" />
 </RelativeLayout>

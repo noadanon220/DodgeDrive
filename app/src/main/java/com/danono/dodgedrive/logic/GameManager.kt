@@ -16,11 +16,20 @@ class GameManager {
     private var coinAddCounter = 0
     private var score = 0
 
+    private var distance: Int = 0
+    fun getDistance(): Int = distance
+
+
     fun getRockPositions(): List<Position> = rockPositions.toList()
     fun getCoinPositions(): List<Position> = coinPositions.toList()
     fun getLives(): Int = lives
     fun isGameOver(): Boolean = lives <= 0
     fun getScore(): Int = score
+
+    // Called every game tick to increment distance
+    fun tickGameProgress() {
+        distance++
+    }
 
     fun addNewRocks() {
         if (rockPositions.size < MAX_ROCKS) {
