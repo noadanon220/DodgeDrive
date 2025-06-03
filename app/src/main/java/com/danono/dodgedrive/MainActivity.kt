@@ -84,7 +84,11 @@ class MainActivity : AppCompatActivity(), TiltCallback {
         gameTimer = GameTimer(lifecycleScope) {
             gameManager.tickGameProgress() // increment distance
             gameManager.addNewRocks()
+            gameManager.addNewCoins()
+            gameManager.addNewHearts()
             val collision = gameManager.moveRocksDown()
+            gameManager.moveCoinsDown()
+            val heartCollected = gameManager.moveHeartsDown()
 
             if (collision) {
                 updateHearts()
@@ -102,11 +106,9 @@ class MainActivity : AppCompatActivity(), TiltCallback {
                 }
             }
 
-            gameManager.addNewCoins()
-            val collectedCoin = gameManager.moveCoinsDown()
-
-            if (collectedCoin) {
-                SignalManager.getInstance().toast("Yay! Collected a coin!")
+            if (heartCollected) {
+                updateHearts()
+                SignalManager.getInstance().toast("Extra life!")
             }
 
             updateUI()
@@ -334,6 +336,7 @@ class MainActivity : AppCompatActivity(), TiltCallback {
         drawCar()
         drawRocks()
         drawCoins()
+        drawHearts()
         main_TXT_score.text = "Score: ${gameManager.getScore()}"
     }
 
@@ -359,6 +362,16 @@ class MainActivity : AppCompatActivity(), TiltCallback {
         for (position in coinPositions) {
             main_LAYOUT_board[position.row][position.col].apply {
                 setImageResource(R.drawable.coin)
+                visibility = View.VISIBLE
+            }
+        }
+    }
+
+    private fun drawHearts() {
+        val heartPositions = gameManager.getHeartPositions()
+        for (position in heartPositions) {
+            main_LAYOUT_board[position.row][position.col].apply {
+                setImageResource(R.drawable.heart)
                 visibility = View.VISIBLE
             }
         }
