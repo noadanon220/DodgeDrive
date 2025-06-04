@@ -5,7 +5,7 @@
 The game challenges the player to avoid falling rocks by controlling a car across three lanes. The player starts with three lives, which are visually represented as hearts. The game ends after three collisions.
 
 <div align="center">
-  <img src="screenshots/dodgeDrive_workflow.png" alt="Game flow" width="250"/>
+  <img src="screenshots/dodgeDrive_workflow.png" alt="Game flow"/>
 </div>
 
 ## 🎮 Gameplay
