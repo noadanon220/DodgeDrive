@@ -78,9 +78,9 @@ Control the car by tilting your device **left** or **right**. Movement is respon
 
 ## 📲 Installation
 
-To run the app on an Android device or emulator:
+Feel free to clone and run the app on any Android device or emulator:
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/noadanon220/DodgeDrive.git
+```bash
+git clone https://github.com/noadanon220/DodgeDrive.git
+
 
