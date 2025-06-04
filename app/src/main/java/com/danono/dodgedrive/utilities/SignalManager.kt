@@ -8,10 +8,10 @@ import android.os.VibrationEffect
 import android.os.Vibrator
 import android.os.VibratorManager
 import android.widget.Toast
-import java.lang.ref.WeakReference
 
 class SignalManager private constructor(context: Context) {
-    private val contextRef = WeakReference(context)
+
+    private val appContext: Context = context.applicationContext
 
     companion object {
         @Volatile
@@ -31,67 +31,47 @@ class SignalManager private constructor(context: Context) {
     }
 
     fun toast(text: String) {
-        contextRef.get()?.let { context: Context ->
-            Toast
-                .makeText(
-                    context,
-                    text,
-                    Toast.LENGTH_SHORT
-                )
-                .show()
-        }
+        Toast.makeText(appContext, text, Toast.LENGTH_SHORT).show()
     }
 
     fun vibrate() {
-        contextRef.get()?.let { context: Context ->
-            val vibrator: Vibrator =
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                    val vibratorManager =
-                        context.getSystemService(VIBRATOR_MANAGER_SERVICE) as VibratorManager
-                    vibratorManager.defaultVibrator
-                } else {
-                    context.getSystemService(VIBRATOR_SERVICE) as Vibrator
-                }
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-                val SOSPattern = longArrayOf(
-                    0,
-                    200,
-                    100,
-                    200,
-                    100,
-                    200,
-                    300,
-                    500,
-                    100,
-                    500,
-                    100,
-                    500,
-                    300,
-                    200,
-                    100,
-                    200,
-                    100,
-                    200
-                )
-
-                val waveFormVibrationEffect =
-                    VibrationEffect.createWaveform(
-                        SOSPattern,
-                        -1
-                    )
-
-                val oneShotVibrationEffect =
-                    VibrationEffect.createOneShot(
-                        500,
-                        VibrationEffect.DEFAULT_AMPLITUDE
-                    )
-
-//                vibrator.vibrate(oneShotVibrationEffect)
-                vibrator.vibrate(waveFormVibrationEffect)
-            }else{
-                vibrator.vibrate(500)
+        val vibrator: Vibrator =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                val vibratorManager =
+                    appContext.getSystemService(VIBRATOR_MANAGER_SERVICE) as VibratorManager
+                vibratorManager.defaultVibrator
+            } else {
+                appContext.getSystemService(VIBRATOR_SERVICE) as Vibrator
             }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val SOSPattern = longArrayOf(
+                0,
+                200,
+                100,
+                200,
+                100,
+                200,
+                300,
+                500,
+                100,
+                500,
+                100,
+                500,
+                300,
+                200,
+                100,
+                200,
+                100,
+                200
+            )
+
+            val waveFormVibrationEffect =
+                VibrationEffect.createWaveform(SOSPattern, -1)
+
+            vibrator.vibrate(waveFormVibrationEffect)
+        } else {
+            vibrator.vibrate(500)
         }
     }
 }

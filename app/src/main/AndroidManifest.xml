@@ -3,7 +3,11 @@
     package="com.danono.dodgedrive">
 
 
-<uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+
 
 
     <application
@@ -18,7 +22,7 @@
         android:theme="@style/Theme.CarRace"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".MenuActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,6 +30,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".PlayerInfoActivity" />
+        <activity android:name=".ScoreboardActivity" />
+
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_KEY}" />
     </application>
 
 </manifest>
