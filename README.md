@@ -4,7 +4,15 @@
 
 **'DodgeDrive'** is a simple Android game app developed as part of the **Mobile Application Development** course in a Bachelor's degree in Computer Science.
 
-The game challenges the player to avoid falling rocks by controlling a car across three lanes. The player starts with three lives, which are visually represented as hearts. The game ends after three collisions.
+The game challenges the player to avoid falling rocks by controlling a car across **five lanes**.  
+Players can **collect coins** to increase their score and **gather hearts** to gain extra lives.  
+Each game starts with **three lives**, visually represented as ❤️ icons.  
+The game ends after three collisions, unless extra hearts are collected along the way.
+
+Before starting, players can **choose between three gameplay modes**:
+- 🐢 **Slow Mode** – Relaxed obstacle speed for casual play  
+- ⚡ **Fast Mode** – High-speed, more challenging experience  
+- 🎮 **Sensor Mode** – Control the car by tilting the device left/right
 
 <div align="center">
   <img src="screenshots/dodgeDrive_user_workflow.png" alt="Game flow"/>
