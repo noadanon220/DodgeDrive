@@ -66,18 +66,3 @@ Control the car by tilting your device **left** or **right**. Movement is respon
 - **Custom Drawables & XML Styling** – Rounded cards, shadows, and game visuals
 - **Gradle** – Build and dependency management
 
----
-
-## Installation and usage
-Included in the repo is an [APK file](https://github.com/noadanon220/DodgeDrive/blob/main/com.danono.dodgedrive.apk) of the app. feel free to install it or build the code yourselves
-
-## 🖼️ Video
-
-<div align="center">
-  <video src="https://github.com/user-attachments/assets/1cfd9886-8e4a-4806-beda-5e991bcef17a" alt="DodgeDrive Demo" ></video>
-</div>
-
-
----
-
-Feel free to clone the repo and try the game on your Android device!
