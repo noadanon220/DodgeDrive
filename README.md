@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="screenshots/dodgeDrive_headerpng.png" alt="Game flow"/>
+  <img src="screenshots/dodgeDrive_game_workflow.jpg" alt="Game flow"/>
 </div>
 
 **'DodgeDrive'** is a simple Android game app developed as part of the **Mobile Application Development** course in a Bachelor's degree in Computer Science.
@@ -36,6 +36,16 @@ Control the car by tilting your device **left** or **right**. Movement is respon
 
 ---
 
+## 🪙 Coins, Extra Lives & Background Music
+
+- 🪙 **Coins** collected during the game add **10 points** each to the final score.
+- ❤️ **Extra lives** can also appear on the board – collecting them increases the player's remaining lives.
+- 💥 Collisions reduce the player's life count.
+- Players begin with **3 lives** (represented by hearts) and the game ends when all lives are lost.
+- 🎵 A **background soundtrack** was added to enhance the gameplay experience.
+
+---
+
 ## 🏆 Scoreboard & Record Location
 
 - After each game, the result is saved with the following details:
@@ -46,9 +56,7 @@ Control the car by tilting your device **left** or **right**. Movement is respon
 
 - The **Top 10 high scores** are saved persistently.
 
-- Players can:
-  - 🗂️ **Sort scores** by score or distance
-  - 🗺️ **View scores on a map** to see where records were made
+- Players can **View scores on a map** to see where records were made
 
 ---
 
@@ -65,4 +73,14 @@ Control the car by tilting your device **left** or **right**. Movement is respon
 - **MediaPlayer** – Background music and sound effects (coin, rock, extra life)
 - **Custom Drawables & XML Styling** – Rounded cards, shadows, and game visuals
 - **Gradle** – Build and dependency management
+
+---
+
+## 📲 Installation
+
+To run the app on an Android device or emulator:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/noadanon220/DodgeDrive.git
 
