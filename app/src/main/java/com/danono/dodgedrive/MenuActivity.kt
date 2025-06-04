@@ -17,7 +17,6 @@ class MenuActivity : AppCompatActivity() {
     private lateinit var menu_BTN_fast: MaterialButton
     private lateinit var menu_BTN_sensors: MaterialButton
     private lateinit var menu_BTN_scoreboard: MaterialButton
-    private lateinit var menu_BTN_settings: MaterialButton
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +50,6 @@ class MenuActivity : AppCompatActivity() {
         menu_BTN_fast = findViewById(R.id.menu_BTN_fast)
         menu_BTN_sensors = findViewById(R.id.menu_BTN_sensors)
         menu_BTN_scoreboard = findViewById(R.id.menu_BTN_scoreboard)
-        menu_BTN_settings = findViewById(R.id.menu_BTN_settings)
 
     }
 
@@ -78,9 +76,7 @@ class MenuActivity : AppCompatActivity() {
             startActivity(Intent(this, ScoreboardActivity::class.java))
         }
 
-        menu_BTN_settings.setOnClickListener {
-            startActivity(Intent(this, SettingsActivity::class.java))
-        }
+
 
     }
 

@@ -6,10 +6,25 @@
     <string name="menu_BTN_sensors">Sensors Mode</string>
     <string name="scoreboard_button">SCORE BOARD 🏆</string>
     <string name="settings_button">SETTINGS  ⚙️</string>
-    <string name="scores_board_title">Scores Board</string>
+    <string name="scores_board_title">SCORE BOARD</string>
     <string name="score_label">Score</string>
     <string name="miles_label">Miles</string>
     <string name="saved_label">Saved</string>
     <string name="enter_name_toast">Please enter your name</string>
+    <string name="_score">000</string>
+    <string name="congratulations">Congratulations!</string>
+    <string name="you_held_on_like_a_champ">You held on like a champ!</string>
+    <string name="your_final_score">Your final score</string>
+    <string name="score">Score</string>
+    <string name="score_text">000</string>
+    <string name="miles">Miles</string>
+    <string name="userInfo_miles_text_large">000</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="save_record">Save Record</string>
+    <string name="zero_val">000</string>
+    <string name="miles_lbl">Miles:</string>
+    <string name="score_lbl">Score:</string>
+    <string name="date">00/00/0000</string>
+    <string name="player_name">Player Name</string>
 
 </resources>

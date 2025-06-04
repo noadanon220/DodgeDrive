@@ -6,97 +6,81 @@
     android:background="@drawable/background2"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="@dimen/default_margin">
 
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/menu_IMG_logo"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:layout_marginBottom="38dp"
+        android:layout_width="@dimen/logo_dimen"
+        android:layout_height="@dimen/logo_dimen"
+        android:layout_marginBottom="@dimen/logo_bottom_margin"
         android:src="@drawable/logo_dodge_drive" />
 
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/menu_BTN_slow"
-        android:layout_width="220dp"
+        android:layout_width="@dimen/menu_button_width"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="@dimen/default_margin"
         android:backgroundTint="@color/yellow_"
-        android:elevation="8dp"
+        android:elevation="@dimen/menu_button_elevation"
         android:text="@string/menu_BTN_slow"
+        android:textAllCaps="true"
         android:textColor="@color/black"
         android:textSize="@dimen/text_button_size"
-        android:textAllCaps="true"
         android:textStyle="bold"
-        app:cornerRadius="20dp"
-        app:strokeWidth="2dp" />
+        app:cornerRadius="@dimen/default_corner_radius"
+        app:strokeWidth="@dimen/menu_button_stroke" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/menu_BTN_fast"
-        android:layout_width="220dp"
+        android:layout_width="@dimen/menu_button_width"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="@dimen/default_margin"
         android:backgroundTint="@color/orange_"
-        android:elevation="8dp"
+        android:elevation="@dimen/menu_button_elevation"
         android:text="@string/menu_BTN_fast"
+        android:textAllCaps="true"
         android:textColor="@color/black"
         android:textSize="@dimen/text_button_size"
         android:textStyle="bold"
-        android:textAllCaps="true"
-        app:cornerRadius="20dp"
-        app:strokeWidth="2dp" />
+        app:cornerRadius="@dimen/menu_button_width"
+        app:strokeWidth="@dimen/menu_button_stroke" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/menu_BTN_sensors"
-        android:layout_width="220dp"
+        android:layout_width="@dimen/menu_button_width"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="@dimen/default_margin"
         android:backgroundTint="@color/red_"
-        android:elevation="8dp"
+        android:elevation="@dimen/menu_button_elevation"
         android:text="@string/menu_BTN_sensors"
+        android:textAllCaps="true"
         android:textColor="@color/black"
         android:textSize="@dimen/text_button_size"
-        android:textAllCaps="true"
         android:textStyle="bold"
-        app:cornerRadius="20dp"
-        app:strokeWidth="2dp" />
+        app:cornerRadius="@dimen/default_corner_radius"
+        app:strokeWidth="@dimen/menu_button_stroke" />
 
     <View
-        android:layout_width="300dp"
-        android:layout_height="4dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/white"/>
+        android:layout_width="@dimen/divider_width"
+        android:layout_height="@dimen/divider_height"
+        android:layout_marginTop="@dimen/default_margin"
+        android:background="@color/white" />
 
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/menu_BTN_scoreboard"
-        android:layout_width="200dp"
+        android:layout_width="@dimen/menu_button_width"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="@dimen/default_margin"
         android:backgroundTint="@color/white"
-        android:elevation="8dp"
-        android:layout_marginTop="16dp"
+        android:elevation="@dimen/menu_button_elevation"
         android:text="@string/scoreboard_button"
         android:textColor="@color/black"
         android:textSize="@dimen/text_button_size"
         android:textStyle="bold" />
-
-
-
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/menu_BTN_settings"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/white"
-        android:elevation="8dp"
-        android:text="@string/settings_button"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_button_size"
-        android:textStyle="bold"/>
 
 
 </LinearLayout>

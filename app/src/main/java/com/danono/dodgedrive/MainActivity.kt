@@ -16,6 +16,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.danono.dodgedrive.logic.GameManager
 import com.danono.dodgedrive.logic.GameTimer
+import com.danono.dodgedrive.logic.HeartCollectionResult
 import com.danono.dodgedrive.utilities.Constants
 import com.danono.dodgedrive.utilities.SignalManager
 import com.danono.dodgedrive.utilities.SoundManager
@@ -88,7 +89,7 @@ class MainActivity : AppCompatActivity(), TiltCallback {
             gameManager.addNewHearts()
             val collision = gameManager.moveRocksDown()
             gameManager.moveCoinsDown()
-            val heartCollected = gameManager.moveHeartsDown()
+            val heartResult = gameManager.moveHeartsDown()
 
             if (collision) {
                 updateHearts()
@@ -106,9 +107,17 @@ class MainActivity : AppCompatActivity(), TiltCallback {
                 }
             }
 
-            if (heartCollected) {
-                updateHearts()
-                SignalManager.getInstance().toast("Extra life!")
+            when (heartResult) {
+                HeartCollectionResult.COLLECTED -> {
+                    updateHearts()
+                    SignalManager.getInstance().toast("Extra life!")
+                }
+                HeartCollectionResult.MAX_LIVES -> {
+                    SignalManager.getInstance().toast("You have enough life.")
+                }
+                HeartCollectionResult.NONE -> {
+                    // Do nothing
+                }
             }
 
             updateUI()

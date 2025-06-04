@@ -4,8 +4,7 @@
     android:id="@+id/activity_player_info"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    android:padding="24dp"
+    android:padding="@dimen/margin_24"
     tools:context=".PlayerInfoActivity">
 
     <!-- Header -->
@@ -13,36 +12,36 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Congratulations!"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        android:textColor="#0A285F"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp" />
+        android:layout_marginTop="@dimen/large_margin"
+        android:text="@string/congratulations"
+        android:textColor="@color/dark_blue"
+        android:textSize="@dimen/text_28"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="You held on like a champ!"
-        android:textSize="18sp"
-        android:textColor="#33435C"
         android:layout_below="@id/title"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="@dimen/margin_8"
+        android:text="@string/you_held_on_like_a_champ"
+        android:textColor="@color/dark_grey"
+        android:textSize="@dimen/text_18" />
 
     <!-- Score Title -->
     <TextView
         android:id="@+id/final_score_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Your final score"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:textColor="#0A285F"
         android:layout_below="@id/subtitle"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp" />
+        android:layout_marginTop="@dimen/large_margin"
+        android:text="@string/your_final_score"
+        android:textColor="@color/dark_blue"
+        android:textSize="@dimen/your_title_text_22"
+        android:textStyle="bold" />
 
     <!-- Score Cards -->
     <LinearLayout
@@ -50,80 +49,80 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/final_score_label"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/default_margin"
         android:gravity="center"
+        android:orientation="horizontal"
         android:weightSum="2">
 
         <!-- Score Card -->
         <com.google.android.material.card.MaterialCardView
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero_dimen"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_8"
             android:layout_weight="1"
-            android:layout_marginEnd="8dp"
-            app:cardCornerRadius="16dp"
-            app:cardBackgroundColor="#D6EDFF">
+            app:cardBackgroundColor="#D6EDFF"
+            app:cardCornerRadius="@dimen/default_corner_radius">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:orientation="vertical"
+                android:layout_height="@dimen/card_height"
                 android:gravity="center"
-                android:padding="16dp">
+                android:orientation="vertical"
+                android:padding="@dimen/default_margin">
 
                 <TextView
                     android:id="@+id/palyrinfo_TXT_score"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Score"
-                    android:textColor="#0A285F"
-                    android:textSize="16sp" />
+                    android:text="@string/score"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="@dimen/score_title_text" />
 
                 <TextView
                     android:id="@+id/playerinfo_TXT_scorevalue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="000"
-                    android:textColor="#0A285F"
-                    android:textSize="28sp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="4dp" />
+                    android:layout_marginTop="@dimen/margin_4"
+                    android:text="@string/score_text"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="@dimen/text_28"
+                    android:textStyle="bold" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
         <!-- Miles Card -->
         <com.google.android.material.card.MaterialCardView
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero_dimen"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_8"
             android:layout_weight="1"
-            android:layout_marginStart="8dp"
-            app:cardCornerRadius="16dp"
-            app:cardBackgroundColor="#D6EDFF">
+            app:cardBackgroundColor="@color/light_blue"
+            app:cardCornerRadius="@dimen/default_corner_radius">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:orientation="vertical"
+                android:layout_height="@dimen/card_height"
                 android:gravity="center"
-                android:padding="16dp">
+                android:orientation="vertical"
+                android:padding="@dimen/default_margin">
 
                 <TextView
                     android:id="@+id/palyrinfo_TXT_miles"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Miles"
-                    android:textColor="#0A285F"
-                    android:textSize="16sp" />
+                    android:text="@string/miles"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="@dimen/text_16" />
 
                 <TextView
                     android:id="@+id/playerinfo_TXT_milesvalue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="000"
+                    android:layout_marginTop="@dimen/margin_4"
+                    android:text="@string/userInfo_miles_text_large"
                     android:textColor="#0A285F"
-                    android:textSize="28sp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="4dp" />
+                    android:textSize="@dimen/text_28"
+                    android:textStyle="bold" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
@@ -134,14 +133,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/userinfo_BOX_record"
-        android:layout_marginTop="32dp"
-        android:hint="Enter your name"
+        android:layout_marginTop="@dimen/large_margin"
         android:background="@drawable/edittext_rounded"
-        android:textColor="#0A285F"
-        android:textColorHint="#999999"
-        android:padding="12dp"
-        android:textSize="16sp"
-        android:inputType="textPersonName" />
+        android:hint="@string/enter_your_name"
+        android:inputType="textPersonName"
+        android:padding="@dimen/small_margin"
+        android:textColor="@color/dark_blue"
+        android:textColorHint="@color/alto_grey"
+        android:textSize="@dimen/text_16" />
 
     <!-- Button -->
     <com.google.android.material.button.MaterialButton
@@ -149,10 +148,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/userinfo_ET_text"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="#FF6B6B"
-        android:text="Save Record"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        android:padding="12dp" />
+        android:layout_marginTop="@dimen/default_margin"
+        android:backgroundTint="@color/red_"
+        android:padding="@dimen/small_margin"
+        android:text="@string/save_record"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_18" />
 </RelativeLayout>

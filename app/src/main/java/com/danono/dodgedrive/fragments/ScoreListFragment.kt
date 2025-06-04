@@ -31,9 +31,6 @@ class ScoreListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.post {
-            adjustRecyclerViewHeight()
-        }
     }
 
     private fun initScoreList() {

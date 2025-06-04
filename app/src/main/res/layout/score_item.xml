@@ -3,49 +3,45 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <!-- Main row content: name/date on the left, score/miles on the right -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="16dp">
+        android:layout_margin="@dimen/default_margin"
+        android:orientation="horizontal">
 
-        <!-- Left column: Player name and score date -->
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero_dimen"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="start|center_vertical">
+            android:gravity="start|center_vertical"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/playerName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Player Name"
-                android:textColor="#333333"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:paddingBottom="4dp" />
+                android:paddingBottom="@dimen/margin_4"
+                android:text="@string/player_name"
+                android:textColor="@color/dark_blue"
+                android:textSize="@dimen/text_20"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/scoreDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="00/00/0000"
+                android:text="@string/date"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="@dimen/text_16" />
         </LinearLayout>
 
-        <!-- Right column: Score and miles -->
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero_dimen"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="end|center_vertical">
+            android:gravity="end|center_vertical"
+            android:orientation="vertical">
 
-            <!-- Score row -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -55,43 +51,42 @@
                     android:id="@+id/scoreTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Score: "
+                    android:text="@string/score_lbl"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/text_18"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/score_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="000"
+                    android:text="@string/zero_val"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/text_18" />
             </LinearLayout>
 
-            <!-- Miles row -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/margin_8"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/milesTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Miles: "
+                    android:text="@string/miles_lbl"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/text_18"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/miles_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="000"
+                    android:text="@string/zero_val"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/text_18" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

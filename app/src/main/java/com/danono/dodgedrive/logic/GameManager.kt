@@ -166,18 +166,20 @@ class GameManager(private val context: Context) {
     }
 
     // Moves all hearts down and checks for collection by the car
-    fun moveHeartsDown(): Boolean {
+    fun moveHeartsDown(): HeartCollectionResult {
         val updatedPositions = mutableListOf<Position>()
-        var collected = false
+        var result = HeartCollectionResult.NONE
 
         for (position in heartPositions) {
             val newRow = position.row + 1
 
             if (newRow == Constants.Game.BOARD_ROWS - 1 && position.col == carPosition) {
-                collected = true
                 if (lives < Constants.Game.INITIAL_LIVES) {
                     lives++
                     SoundManager.playHeartCollection(context)
+                    result = HeartCollectionResult.COLLECTED
+                } else {
+                    result = HeartCollectionResult.MAX_LIVES
                 }
                 continue
             }
@@ -189,7 +191,7 @@ class GameManager(private val context: Context) {
         heartPositions.clear()
         heartPositions.addAll(updatedPositions)
 
-        return collected
+        return result
     }
 
     fun moveLeft() {
@@ -211,4 +213,10 @@ class GameManager(private val context: Context) {
         carPosition = Constants.Game.CAR_START_POSITION
         score = 0
     }
+}
+
+enum class HeartCollectionResult {
+    NONE,
+    COLLECTED,
+    MAX_LIVES
 }
