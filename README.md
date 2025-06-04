@@ -8,13 +8,48 @@ The game challenges the player to avoid falling rocks by controlling a car acros
   <img src="screenshots/dodgeDrive_workflow.png" alt="Game flow"/>
 </div>
 
-## 🎮 Gameplay
+# 🕹️ Dodge Drive – Part 2 Update Overview
 
-- Tap the left or right button to move the car between lanes.
-- Rocks fall from the top of the screen in random columns.
-- If a rock hits the car, the player loses a life.
-- Vibration and Toast messages provide feedback after each collision.
-- The game stops automatically after all lives are lost.
+This update introduces several key gameplay enhancements and features:
+
+---
+
+## 🎮 Gameplay Modes
+
+### 1. Slow Mode  
+Obstacles fall at a relaxed pace – ideal for beginners or a casual experience.
+
+### 2. Fast Mode  
+A challenging mode with high-speed obstacles for experienced players seeking intense action.
+
+### 3. Sensor Mode  
+Control the car by tilting your device **left** or **right**. Movement is responsive to your device's orientation.
+
+---
+
+## 🛣️ Expanded Game Board
+
+- The game grid now includes **5 lanes** instead of 3.
+- This provides more space and complexity for dodging obstacles and collecting coins.
+
+---
+
+## 🏆 Scoreboard & Record Location
+
+- After each game, the result is saved with the following details:
+  - 👤 **Player name**
+  - 🪙 **Final score**
+  - 📍 **GPS location** where the score was set
+  - 📅 **Date** of the achievement
+
+- The **Top 10 high scores** are saved persistently.
+
+- Players can:
+  - 🗂️ **Sort scores** by score or distance
+  - 🗺️ **View scores on a map** to see where records were made
+
+---
+
 
 ## 🛠️ Technologies Used
 
