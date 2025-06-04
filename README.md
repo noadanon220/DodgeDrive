@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="screenshots/dodgeDrive_header.png" alt="Game flow"/>
+  <img src="screenshots/dodgeDrive_headerpng.png" alt="Game flow"/>
 </div>
 
 **'DodgeDrive'** is a simple Android game app developed as part of the **Mobile Application Development** course in a Bachelor's degree in Computer Science.
