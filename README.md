@@ -52,20 +52,26 @@ Control the car by tilting your device **left** or **right**. Movement is respon
 
 ---
 
-
 ## 🛠️ Technologies Used
 
-- **Language:** Kotlin  
-- **IDE:** Android Studio  
-- **UI:** XML Layouts with Material Components  
-- **Architecture:** MVVM-inspired logic separation  
-- **Feedback:** Vibration & Toast APIs  
-- **Version Control:** Git & GitHub  
+- **Kotlin** – Main programming language
+- **Android SDK** – Core framework for Android development
+- **ViewBinding** – Efficient access to views
+- **Fragments & Activities** – Structured navigation and UI flow
+- **RecyclerView** – Dynamic display of the scoreboard
+- **SharedPreferences** – Persistent local storage for top 10 scores
+- **Google Maps SDK** – To show where each high score was achieved
+- **SensorManager** – Enables motion-based control in Sensor Mode
+- **MediaPlayer** – Background music and sound effects (coin, rock, extra life)
+- **Custom Drawables & XML Styling** – Rounded cards, shadows, and game visuals
+- **Gradle** – Build and dependency management
+
+---
 
 ## Installation and usage
 Included in the repo is an [APK file](https://github.com/noadanon220/DodgeDrive/blob/main/com.danono.dodgedrive.apk) of the app. feel free to install it or build the code yourselves
 
-## 🖼️ Screenshots
+## 🖼️ Video
 
 <div align="center">
   <video src="https://github.com/user-attachments/assets/1cfd9886-8e4a-4806-beda-5e991bcef17a" alt="DodgeDrive Demo" ></video>
